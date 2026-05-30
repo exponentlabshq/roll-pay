@@ -6,12 +6,35 @@ import './lib/demoReset.js';
 import { useRollStore } from './store/index.js';
 
 import { render } from 'preact';
+import { route } from 'preact-router';
 import { Workbox } from 'workbox-window';
 import App from './App.jsx';
 
 const root = document.getElementById('root');
 if (root) {
   render(<App />, root);
+}
+
+// Initial routing decision (M3-F01 step 5).
+//
+// Runs AFTER mount so the store has rehydrated (Zustand `persist` reads
+// localStorage synchronously inside create(), so by the time we get
+// here `onboarded` reflects the persisted value — or the default
+// `false` if `?demo=fresh` wiped storage above).
+//
+// Rules:
+//   - hash is empty or '#/' or '#/home':
+//       onboarded === false  → /splash
+//       onboarded === true   → /home
+//   - hash is anything else (e.g. '#/card' from a deep link or a tab
+//     tap mid-flow): leave it alone.
+if (typeof window !== 'undefined') {
+  const rawHash = window.location.hash.slice(1);
+  const isHome = rawHash === '' || rawHash === '/' || rawHash === '/home';
+  if (isHome) {
+    const onboarded = useRollStore.getState().onboarded;
+    route(onboarded ? '/home' : '/splash');
+  }
 }
 
 // Mock yield ticker (M2-F02 step 2).
