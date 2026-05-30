@@ -6,6 +6,12 @@ node_modules
 dist
 .vite
 
+# vite-plugin-pwa dev SW scratch dir
+dev-dist
+
+# Test artifacts
+tests/screenshots
+
 # OS
 .DS_Store
 
