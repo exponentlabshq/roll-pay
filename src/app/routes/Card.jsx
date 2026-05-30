@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
 import HoloCard from '../components/HoloCard.jsx';
 import CelebrationOverlay from '../components/CelebrationOverlay.jsx';
+import TransactionRow from '../components/TransactionRow.jsx';
 import { useRollStore } from '../store/index.js';
 
 /**
@@ -31,6 +32,7 @@ function formatDollars(cents) {
 
 export default function Card() {
   const recordTap = useRollStore((s) => s.recordTap);
+  const transactions = useRollStore((s) => s.transactions);
   const [overlay, setOverlay] = useState(null); // 'free' or null
   const [chargedToast, setChargedToast] = useState(null); // {amount} or null
 
@@ -80,12 +82,19 @@ export default function Card() {
         </p>
       )}
 
-      <div
-        data-testid="transactions-placeholder"
-        class="mt-8 rounded-md bg-ink-soft p-4 font-body text-sm text-text-muted"
-      >
-        Recent activity will appear here.
-      </div>
+      {/* Recent transactions (M3-F04 / M3-A14). Newest first, capped at
+          8 rows. Scrolls inside its own max-height container so the
+          page stays anchored on the Tap-to-Pay hero above. */}
+      <section data-testid="transactions-list" class="mt-8">
+        <h2 class="font-body uppercase tracking-wider text-text-muted text-xs">
+          Recent
+        </h2>
+        <ul class="mt-2 overflow-y-auto max-h-72">
+          {transactions.slice(0, 8).map((tx) => (
+            <TransactionRow key={tx.id} tx={tx} />
+          ))}
+        </ul>
+      </section>
 
       {overlay === 'free' && (
         <CelebrationOverlay
