@@ -1,17 +1,9 @@
 import './styles/app.css';
-
-// Handle ?demo=fresh BEFORE any store/import runs.
-if (typeof window !== 'undefined') {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('demo') === 'fresh') {
-    try {
-      localStorage.removeItem('roll-pwa-store');
-    } catch {
-      // ignore storage errors
-    }
-    history.replaceState(null, '', '/app/');
-  }
-}
+// MUST be imported BEFORE the store module so the localStorage wipe
+// runs before zustand/persist rehydrates. ES module evaluation order
+// gives us that guarantee.
+import './lib/demoReset.js';
+import './store/index.js';
 
 import { render } from 'preact';
 import { Workbox } from 'workbox-window';
