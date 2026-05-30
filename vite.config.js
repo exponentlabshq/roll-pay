@@ -12,8 +12,15 @@ export default defineConfig({
       injectRegister: false, // workbox-window handles registration in src/app/main.jsx
       scope: '/app/',
       base: '/app/',
+      buildBase: '/',
       filename: 'sw.js',
-      manifestFilename: 'manifest.webmanifest',
+      // Emit the manifest under /app/ so the link href in dist/app/index.html
+      // (which is `<link rel="manifest" href="/app/manifest.webmanifest">`)
+      // resolves to a real file rather than being swallowed by the SPA
+      // fallback. Lighthouse / Chrome install prompts require the manifest
+      // to actually be fetchable; previously it was emitted at dist root and
+      // every PWA installability audit failed.
+      manifestFilename: 'app/manifest.webmanifest',
       includeAssets: [],
       manifest: {
         name: 'Roll',
@@ -36,7 +43,16 @@ export default defineConfig({
         navigateFallbackDenylist: [/^\/(?!app)/],
         cleanupOutdatedCaches: true,
       },
-      devOptions: { enabled: true, type: 'module' },
+      devOptions: {
+        enabled: true,
+        type: 'module',
+        // Keep the dev-mode manifest URL stable at /app/manifest.webmanifest
+        // (matches M1-A03 — fetch http://localhost:5173/app/manifest.webmanifest).
+        // We only relocated `manifestFilename` to `app/manifest.webmanifest`
+        // so prod (buildBase: '/') emits dist/app/manifest.webmanifest matching
+        // the injected <link rel="manifest"> href.
+        webManifestUrl: '/app/manifest.webmanifest',
+      },
     }),
   ],
   build: {
