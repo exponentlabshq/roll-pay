@@ -1,3 +1,5 @@
+import './styles/app.css';
+
 // Handle ?demo=fresh BEFORE any store/import runs.
 if (typeof window !== 'undefined') {
   const params = new URLSearchParams(window.location.search);
