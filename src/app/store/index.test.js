@@ -146,4 +146,25 @@ describe('useRollStore — reset', () => {
     expect(s.sessionFlags.firstTap).toBe(true);
     expect(s.sessionFlags.firstDraw).toBe(true);
   });
+
+  it('reset() preserves action methods so the store is still usable afterwards', async () => {
+    const { useRollStore } = await freshStore();
+    useRollStore.getState().reset();
+    // After reset, every action must still be callable. Regression for
+    // the `set(..., true)` bug that wiped actions alongside data.
+    const s = useRollStore.getState();
+    expect(typeof s.reset).toBe('function');
+    expect(typeof s.addMoney).toBe('function');
+    expect(typeof s.completeOnboarding).toBe('function');
+    expect(typeof s.recordTap).toBe('function');
+    expect(typeof s.recordDraw).toBe('function');
+    expect(typeof s.tickYield).toBe('function');
+    // Drive one round-trip end-to-end so we know the actions actually
+    // mutate state, not just exist as references.
+    s.addMoney(500);
+    s.completeOnboarding();
+    const after = useRollStore.getState();
+    expect(after.balance).toBe(2500);
+    expect(after.onboarded).toBe(true);
+  });
 });

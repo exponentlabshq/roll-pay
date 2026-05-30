@@ -107,8 +107,12 @@ export const useRollStore = create(
       ...createDefaultState(),
 
       // ---- actions ----
+      // Reset only the data slots — do NOT replace the whole state object,
+      // because that would also wipe the action methods bound by `create`.
+      // (Originally written with `set(..., true)` which replaces; that left
+      // a store with no callable actions after reset.)
       reset() {
-        set({ ...createDefaultState() }, true);
+        set(createDefaultState());
       },
 
       addMoney(cents) {
