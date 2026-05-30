@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roll — Buy now. Pay maybe.</title>
+<meta name="description" content="Roll is the digital-dollar card where every tap is a chance to pay nothing. Buy now. Pay maybe.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Roll — Buy now. Pay maybe.">
+<meta property="og:description" content="Roll is the digital-dollar card where every tap is a chance to pay nothing. Buy now. Pay maybe.">
+<!-- TODO: replace with a real hosted OG image (1200x630) once available -->
+<meta property="og:image" content="/og-image.png">
+<meta property="og:url" content="https://roll.example.com/">
+<meta property="og:site_name" content="Roll">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Roll — Buy now. Pay maybe.">
+<meta name="twitter:description" content="The digital-dollar card where every tap is a chance to pay nothing.">
+<!-- TODO: replace with a real hosted OG image (1200x630) once available -->
+<meta name="twitter:image" content="/og-image.png">
+
+<!-- Theme color: ink -->
+<meta name="theme-color" content="#0B0E0C">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <a href="#" class="logo" aria-label="Roll home">r<span class="coins"><span class="coin fill"></span><span class="coin line"></span></span>ll</a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#play">The game</a>
+      <a href="#trust">Your money</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-ghost">Log in</a>
+      <a href="#get" class="btn btn-primary">Get the app</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow two"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span> Now in early access · digital dollars, zero drama</span>
+      <h1 class="hero-title">
+        <span class="ln">Buy now.</span>
+        <span class="ln">Pay maybe.</span>
+      </h1>
+      <p class="hero-sub">The card where every tap is a chance to pay <b class="mono lime">$0.00</b>. Hold digital dollars, tap anywhere, and let the bill maybe vanish.</p>
+      <div class="hero-cta">
+        <a href="#get" class="btn btn-primary">Get the app →</a>
+        <a href="#play" class="btn btn-ghost">▶ See how it works</a>
+      </div>
+      <div class="hero-trust">
+        <div class="avatars"><span></span><span></span><span></span><span></span></div>
+        <span>Self-custodial · No fees to hold · Withdraw anytime</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="ps-top">
+            <div class="ps-bal">Balance <b>$248.50</b></div>
+            <div class="chip-clover">🍀 1,240</div>
+          </div>
+          <div class="holo-card" id="tiltCard">
+            <div class="hc-row">
+              <span class="hc-brand">roll</span>
+              <span class="hc-chip"></span>
+            </div>
+            <div class="hc-num">5212&nbsp;&nbsp;••••&nbsp;&nbsp;••••&nbsp;&nbsp;0007</div>
+            <div class="hc-foot"><small>STABLECOIN · USDC</small><small>VISA</small></div>
+          </div>
+          <div class="receipt">
+            <div class="merch"><span>Blue Bottle Coffee</span><span>now</span></div>
+            <div class="item"><span>Oat latte</span><span>$6.25</span></div>
+            <div class="item"><span>Tip</span><span>$1.00</span></div>
+            <div class="tot"><span>You paid</span><b>$0.00</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker" aria-label="Recent free purchases">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">How it works</span>
+      <h2>Three taps from free.</h2>
+      <p>No points to redeem. No catch. You spend your own digital dollars — and sometimes we just cover the bill.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="n">01</span>
+        <div class="ico">💵</div>
+        <h3>Load digital dollars</h3>
+        <p>Add money and it becomes USDC — a digital dollar worth exactly $1. It stays in a wallet only you control.</p>
+      </div>
+      <div class="step">
+        <span class="n">02</span>
+        <div class="ico">📲</div>
+        <h3>Tap to pay anywhere</h3>
+        <p>Add Roll to Apple Pay or Google Pay and tap at 175M+ places. Settles instantly, 0% on USD spend.</p>
+      </div>
+      <div class="step">
+        <span class="n">03</span>
+        <div class="ico">🍀</div>
+        <h3>Maybe it's free</h3>
+        <p>Every purchase is a roll. Hit a <b class="lime">Zero</b> and we pay it off — your receipt rings up $0.00.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE DEMO -->
+<section id="play">
+  <div class="wrap">
+    <div class="demo">
+      <span class="label" style="display:block;margin-bottom:14px">Try a roll</span>
+      <h2>Tap the card. <span class="lime">Maybe</span> it's on us.</h2>
+      <p class="sub">This is a demo of the magic moment. In real life, every tap has a chance — odds vary, and no purchase is ever necessary to play.</p>
+
+      <div class="demo-receipt">
+        <div class="merch"><span id="dMerch">Joe's Pizza</span><span>card · just now</span></div>
+        <div class="line"><span>2 slices + drink</span><span id="dItem">$11.00</span></div>
+        <div class="grand">
+          <span>Total</span>
+          <span class="demo-total" id="demoTotal">$11.00</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="tapBtn">🪙 Tap to pay</button>
+      <p class="demo-note" id="demoNote">Press the button to simulate a tap-to-pay.</p>
+      <canvas id="confetti"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- GAMIFICATION -->
+<section id="game">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">The game</span>
+      <h2>Spending you actually win at.</h2>
+      <p>Cash-back gives everyone a boring 1%. We take that same budget and turn it into rare, real wins — plus a points world you climb.</p>
+    </div>
+    <div class="game-grid">
+      <div class="tile big">
+        <div>
+          <span class="chip-clover">🍀 Clovers</span>
+          <h3 style="margin-top:18px">Earn Clovers on everything.</h3>
+          <p>Stack Clovers on every tap, streak, and friend you bring. More Clovers, better odds, bigger seasons.</p>
+        </div>
+        <div class="big-num">+1,240</div>
+      </div>
+      <div class="tile">
+        <span class="streak">🔥 14-day streak</span>
+        <h3 style="margin-top:14px">Streaks</h3>
+        <p>Show up daily — even without spending — and your multiplier grows.</p>
+      </div>
+      <div class="tile">
+        <h3>The Daily Roll</h3>
+        <p>One free play a day. No spending required, ever. Pure upside.</p>
+        <span class="chip-clover" style="margin-top:14px">Free entry</span>
+      </div>
+      <div class="tile">
+        <h3>Seasons</h3>
+        <p>Time-boxed events with boosted odds and themed leaderboards.</p>
+        <span class="streak" style="margin-top:14px">Season 1 live</span>
+      </div>
+      <div class="tile" style="grid-column:span 2">
+        <h3>Leaderboard</h3>
+        <ol class="leader">
+          <li><span><span class="rank">01</span> maya_r</span><span class="pts">9,820 🍀</span></li>
+          <li><span><span class="rank">02</span> dev.eth</span><span class="pts">8,140 🍀</span></li>
+          <li><span><span class="rank">03</span> you</span><span class="pts">1,240 🍀</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST / STABLECOIN -->
+<section id="trust" class="trust">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">Your money</span>
+      <h2>Fun with the money. Serious about the safety.</h2>
+      <p>Roll is a stablecoin-first app. Your balance is digital dollars you actually control — not an IOU sitting on our books.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="tcard">
+        <div class="ico">🔐</div>
+        <h3>Self-custodial by design</h3>
+        <p>Your keys never leave your device. We can't freeze or spend your funds — and you can withdraw to your own wallet anytime, even if an account check fails.</p>
+      </div>
+      <div class="tcard">
+        <div class="ico">🪙</div>
+        <h3>Digital dollars, not volatility</h3>
+        <p>Balances are held in USDC on Base. $1 stays $1. Convert in-app for free, spend instantly, no surprises.</p>
+      </div>
+      <div class="tcard">
+        <div class="ico">🚫</div>
+        <h3>No fees to hold or spend</h3>
+        <p>No issuance fee, no monthly fee, 0% on USD purchases. The only possible cost is a small FX spread (under ~1%) on other currencies.</p>
+      </div>
+      <div class="tcard">
+        <div class="ico">🏦</div>
+        <h3>Built on regulated rails</h3>
+        <p>Roll isn't a bank. Digital-dollar and card services run through licensed payment partners on Visa's stablecoin rails, so the magic stays compliant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAT BAND -->
+<section>
+  <div class="wrap stats">
+    <div class="stat"><div class="num">$0.00</div><div class="lbl">What a Zero costs you</div></div>
+    <div class="stat"><div class="num">175M+</div><div class="lbl">Places you can tap</div></div>
+    <div class="stat"><div class="num">0%</div><div class="lbl">Fees on USD spend</div></div>
+    <div class="stat"><div class="num">100%</div><div class="lbl">Yours to withdraw</div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;margin:0 auto var(--space-8)">
+      <span class="label">Questions</span>
+      <h2>The "wait, how?" section.</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>So my purchases are actually free sometimes? <span class="pm">+</span></summary>
+        <p>Yes. Every eligible purchase enters a draw. When it wins, Roll pays it off and your receipt shows $0.00. It's discretionary and the odds vary — so enjoy the wins, but never count on a purchase being free.</p>
+      </details>
+      <details>
+        <summary>How is this possible — what's the catch? <span class="pm">+</span></summary>
+        <p>When you pay by card, the network shares a small fee with us. Instead of handing everyone a forgettable 1% back, we pool that and turn it into rare, real "your whole bill is free" moments. No debt, no credit — you only ever spend money you already loaded.</p>
+      </details>
+      <details>
+        <summary>Do I have to spend money to play? <span class="pm">+</span></summary>
+        <p>Never. The Daily Roll lets you play for free every day with no purchase required. "Buy now, pay maybe" is a reward on spending you'd do anyway — not a reason to spend more.</p>
+      </details>
+      <details>
+        <summary>Is my money safe? Can I get it out? <span class="pm">+</span></summary>
+        <p>Roll is self-custodial: you hold the keys, and you can withdraw your digital dollars to your own wallet at any time. We never take custody of your funds.</p>
+      </details>
+      <details>
+        <summary>What's a stablecoin? Is this crypto? <span class="pm">+</span></summary>
+        <p>Your balance is USDC — a digital dollar pegged 1:1 to the US dollar. It's the stable, boring part of crypto: $1 stays $1. We hide all the complicated parts so it just feels like a fast money app.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="get" class="final">
+  <div class="wrap">
+    <div class="final-card">
+      <div class="blob a"></div>
+      <div class="blob b"></div>
+      <h2>Tap. Maybe pay nothing.</h2>
+      <p>Join the early access list and get your digital-dollar card. The next free coffee could be yours.</p>
+      <a href="#" class="btn btn-dark">Get the app →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="logo" style="font-size:1.6rem">r<span class="coins"><span class="coin fill"></span><span class="coin line"></span></span>ll</a>
+        <p class="foot-tag">The digital-dollar card where every tap is a chance to pay nothing.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="#how">How it works</a>
+        <a href="#play">The game</a>
+        <a href="#trust">Your money</a>
+        <a href="#get">Get the app</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+        <a href="#">Status</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Official Rules</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Responsible play</a>
+      </div>
+    </div>
+    <div class="legal">
+      <p><strong>No purchase necessary</strong> to participate in the "Buy now. Pay maybe." program. A free daily entry method (the Daily Roll) is always available. Odds of a purchase being paid off vary and are determined at Roll's sole discretion; do not rely on any purchase being free or change your spending habits. Void where prohibited; not available in all states or jurisdictions. Free purchases may be reported as taxable income where required by law.</p>
+      <p>Roll is a financial technology company, not a bank, money transmitter, or asset custodian. Roll facilitates self-custody, meaning you hold and control your own funds via keys you alone safeguard. Balances are held in stablecoins (USDC); $1 in equals roughly $1 in stablecoin, subject to network and conversion factors. Fiat on/off-ramps, virtual account numbers, and card issuance are provided by licensed payment partners on supported card networks. Card issued by a licensed partner institution. Stablecoin balances are not bank deposits and are not FDIC insured.</p>
+      <p>This is an illustrative concept landing page created for product planning. "Buy now. Pay maybe." reflects a product concept; figures and reviews shown are illustrative. © 2026 Roll. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

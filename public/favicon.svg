@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Roll">
+  <!-- Ink background, rounded square -->
+  <rect width="64" height="64" rx="14" fill="#0B0E0C"/>
+  <!-- Lime coin face, slightly off-center to suggest a coin mid-flip -->
+  <circle cx="32" cy="32" r="20" fill="#C8FF3D"/>
+  <!-- Inner ink ring, the "r" mark -->
+  <text x="32" y="42" text-anchor="middle"
+        font-family="'Bricolage Grotesque', system-ui, sans-serif"
+        font-weight="800" font-size="28" fill="#0B0E0C"
+        letter-spacing="-1">r</text>
+</svg>

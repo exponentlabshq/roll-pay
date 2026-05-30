@@ -1,0 +1,8 @@
+/* ---------- FAQ ---------- */
+.faq{max-width:780px; margin:0 auto}
+details{border-bottom:1px solid var(--ink-line); padding:var(--space-5) 0}
+summary{font-family:var(--font-display); font-weight:700; font-size:1.2rem; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px}
+summary::-webkit-details-marker{display:none}
+summary .pm{color:var(--lime); font-size:1.6rem; transition:transform .25s; font-family:var(--font-body)}
+details[open] summary .pm{transform:rotate(45deg)}
+details p{color:var(--text-muted); margin-top:14px; max-width:62ch}

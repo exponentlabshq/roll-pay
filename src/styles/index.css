@@ -1,0 +1,17 @@
+/* Roll — global stylesheet.
+ *
+ * Import order matters: tokens first (CSS variables), then base
+ * (reset + shared primitives), then component-specific modules in
+ * roughly the order they appear in the page. Cascade-equivalent to
+ * the original single-file <style> block in reference/roll-landing.html. */
+@import "./tokens.css";
+@import "./base.css";
+@import "./nav.css";
+@import "./hero.css";
+@import "./ticker.css";
+@import "./sections.css";
+@import "./demo.css";
+@import "./game.css";
+@import "./trust.css";
+@import "./faq.css";
+@import "./footer.css";

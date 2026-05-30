@@ -1,0 +1,9 @@
+/* ---------- TICKER ---------- */
+.ticker{border-top:1px solid var(--ink-line); border-bottom:1px solid var(--ink-line); background:var(--ink-soft); padding:18px 0; overflow:hidden; white-space:nowrap}
+.ticker-track{display:inline-flex; gap:46px; animation:scroll 32s linear infinite; will-change:transform}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-item{display:inline-flex; align-items:center; gap:12px; font-weight:500; color:var(--cream)}
+.ticker-item .z{font-family:var(--font-mono); color:var(--lime); font-weight:700}
+.ticker-item .who{color:var(--text-muted)}
+.ticker .dotsep{color:var(--coral)}
+@keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}

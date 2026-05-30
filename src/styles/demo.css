@@ -1,0 +1,14 @@
+/* ---------- INTERACTIVE DEMO ---------- */
+.demo{background:linear-gradient(180deg,var(--ink-soft),#0c100e); border:1px solid var(--ink-line); border-radius:var(--radius-xl); padding:var(--space-8); text-align:center; position:relative; overflow:hidden}
+.demo h2{font-size:var(--fs-h1); margin-bottom:12px}
+.demo p.sub{color:var(--text-muted); max-width:46ch; margin:0 auto var(--space-7)}
+.demo-receipt{max-width:380px; margin:0 auto var(--space-6); background:var(--ink); border:1px dashed var(--ink-line); border-radius:var(--radius-md); padding:var(--space-6); text-align:left}
+.demo-receipt .merch{display:flex; justify-content:space-between; color:var(--text-muted); font-size:.9rem; margin-bottom:14px}
+.demo-receipt .line{display:flex; justify-content:space-between; font-family:var(--font-mono); padding:6px 0; color:var(--cream); font-size:.95rem}
+.demo-receipt .grand{display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--ink-line); margin-top:12px; padding-top:16px}
+.demo-receipt .grand span{font-weight:600}
+.demo-total{font-family:var(--font-mono); font-size:var(--fs-mono-xl); font-weight:700; transition:color .3s; line-height:1}
+.demo-total.win{color:var(--lime); text-shadow:0 0 40px rgba(200,255,61,.6)}
+.demo-note{font-size:.82rem; color:var(--text-muted); margin-top:18px}
+#tapBtn{margin-top:8px}
+.demo canvas{position:absolute; inset:0; pointer-events:none; z-index:5}

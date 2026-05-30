@@ -1,0 +1,26 @@
+/* Design tokens — kept identical to reference/roll-landing.html :root.
+ * Source of truth: reference/brand.md §11. */
+:root{
+  --ink:#0B0E0C; --ink-soft:#14181A; --ink-line:#262B2A;
+  --paper:#F3F1E9; --paper-soft:#E8E5D8;
+  --lime:#C8FF3D; --lime-deep:#A6E000;
+  --coral:#FF5A36; --cream:#FFF7E6; --cyan:#5BE8FF; --warning:#FFC24D;
+  --text-on-ink:#F3F1E9; --text-muted:#9AA39E; --text-on-paper:#0B0E0C;
+  --font-display:"Bricolage Grotesque",sans-serif;
+  --font-body:"Hanken Grotesk",sans-serif;
+  --font-mono:"Space Mono",monospace;
+  --fs-display:clamp(3rem,9vw,7rem);
+  --fs-h1:clamp(2.25rem,5vw,3.75rem);
+  --fs-h2:clamp(1.6rem,3vw,2.5rem);
+  --fs-h3:clamp(1.25rem,2vw,1.6rem);
+  --fs-body:clamp(1rem,1.2vw,1.125rem);
+  --fs-mono-xl:clamp(2.5rem,7vw,5rem);
+  --space-4:16px; --space-5:24px; --space-6:32px; --space-7:48px;
+  --space-8:64px; --space-9:96px; --space-10:128px;
+  --radius-md:16px; --radius-lg:24px; --radius-xl:32px; --radius-pill:999px;
+  --shadow-md:0 12px 32px rgba(0,0,0,.35);
+  --shadow-lime:0 16px 48px rgba(200,255,61,.28);
+  --shadow-coral:0 16px 48px rgba(255,90,54,.28);
+  --ease-spring:cubic-bezier(.2,.8,.2,1);
+  --holo:linear-gradient(120deg,#C8FF3D,#5BE8FF,#FF5A36,#C8FF3D);
+}
