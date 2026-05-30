@@ -20,6 +20,25 @@
  */
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+import { rollSpend } from '../mocks/mockSpendEngine.js';
+import { rollDraw } from '../mocks/mockDrawEngine.js';
+
+// Rotating mock merchant list for recordTap() so the transaction
+// history doesn't look like a stuck loop. Kept inline (not a separate
+// mockTransactions module) so this file stays self-contained for M2-F01.
+const MOCK_MERCHANTS = [
+  "Joe's Pizza",
+  'Blue Bottle Coffee',
+  'CVS Pharmacy',
+  'Whole Foods',
+  'Trader Joe',
+  'Chipotle',
+  'Sweetgreen',
+];
+
+function pickMerchant() {
+  return MOCK_MERCHANTS[Math.floor(Math.random() * MOCK_MERCHANTS.length)];
+}
 
 // Default state. Kept as a function so `reset()` can grab a fresh copy
 // (including a fresh `nextDrawAt` 24 h from now) and never accidentally
@@ -97,15 +116,49 @@ export const useRollStore = create(
         set({ balance: get().balance + cents });
       },
 
-      // M2-F01 wires this to mockSpendEngine. For now stub a no-op
-      // so callers in M1 don't crash.
-      recordTap() {
-        return { free: false, charged: 0 };
+      // Roll a single Tap-to-Pay. Defaults amount to $11 (1100 cents)
+      // matching the demo card-receipt mock total. The first tap of a
+      // session is guaranteed free via sessionFlags.firstTap.
+      // Side effects: pushes a transaction row, flips firstTap=false
+      // on first call. Returns the engine result so the caller can
+      // render the celebration overlay.
+      recordTap(amount = 1100) {
+        const state = get();
+        const result = rollSpend({
+          amount,
+          firstTap: state.sessionFlags.firstTap,
+        });
+        const tx = {
+          id: `tx-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+          merchant: pickMerchant(),
+          amount,
+          free: result.free,
+          ts: Date.now(),
+        };
+        set({
+          transactions: [tx, ...state.transactions],
+          sessionFlags: { ...state.sessionFlags, firstTap: false },
+        });
+        return result;
       },
 
-      // M2-F01 wires this to mockDrawEngine.
-      recordDraw() {
-        return { win: false, prize: 0 };
+      // Roll a single Daily Draw. Uses the entries() selector for the
+      // current ticket count and a fixed $100 prize pool (10000 cents).
+      // The first draw of a session is guaranteed to win via
+      // sessionFlags.firstDraw. Side effects: balance += prize on win,
+      // flips firstDraw=false. Returns the engine result.
+      recordDraw(prizePool = 10000) {
+        const state = get();
+        const result = rollDraw({
+          entries: entries(state),
+          prizePool,
+          firstDraw: state.sessionFlags.firstDraw,
+        });
+        set({
+          balance: result.win ? state.balance + result.prize : state.balance,
+          sessionFlags: { ...state.sessionFlags, firstDraw: false },
+        });
+        return result;
       },
 
       // Adds 1–4 cents to balance to simulate continuous yield.
