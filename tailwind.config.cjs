@@ -15,6 +15,10 @@ module.exports = {
         paper: 'var(--paper)',
         'paper-soft': 'var(--paper-soft)',
         warning: 'var(--warning)',
+        // Used by bottom-nav inactive labels and other muted chrome.
+        // Class form is `text-text-muted` (utility prefix `text-` +
+        // color name `text-muted`); awkward but matches the brand var.
+        'text-muted': 'var(--text-muted)',
       },
       fontFamily: {
         display: ['Bricolage Grotesque', 'sans-serif'],
