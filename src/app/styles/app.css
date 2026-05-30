@@ -16,3 +16,27 @@
     font-family: var(--font-body);
   }
 }
+
+/*
+ * holoShift — the continuous diagonal iridescence on HoloCard.
+ *
+ * Gated by `@media (prefers-reduced-motion: no-preference)` so users
+ * who've opted into reduced motion get a static painted card (the
+ * gradient still renders, just doesn't move). This satisfies brand
+ * rule §7 ("Reduced motion: honor prefers-reduced-motion") and
+ * validation assertion M2-A13.
+ */
+@keyframes holoShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .holo-card {
+    animation: holoShift 8s linear infinite;
+  }
+}

@@ -97,6 +97,39 @@ describe('useRollStore — persistence', () => {
   });
 });
 
+describe('useRollStore — recordTap', () => {
+  it('on first call returns a transaction with free:true, charged:0 and flips sessionFlags.firstTap to false', async () => {
+    const { useRollStore } = await freshStore();
+    expect(useRollStore.getState().sessionFlags.firstTap).toBe(true);
+
+    const result = useRollStore.getState().recordTap(1100);
+
+    expect(result).toEqual({ free: true, charged: 0 });
+    expect(useRollStore.getState().sessionFlags.firstTap).toBe(false);
+
+    // The newest transaction is pushed to the front of the list and
+    // mirrors the engine result (free flag is preserved).
+    const top = useRollStore.getState().transactions[0];
+    expect(top.free).toBe(true);
+    expect(top.amount).toBe(1100);
+  });
+});
+
+describe('useRollStore — recordDraw', () => {
+  it('on first call returns {win:true, prize>0}, adds prize to balance, and flips sessionFlags.firstDraw to false', async () => {
+    const { useRollStore } = await freshStore();
+    const before = useRollStore.getState().balance;
+    expect(useRollStore.getState().sessionFlags.firstDraw).toBe(true);
+
+    const result = useRollStore.getState().recordDraw(10000);
+
+    expect(result.win).toBe(true);
+    expect(result.prize).toBeGreaterThan(0);
+    expect(useRollStore.getState().balance).toBe(before + result.prize);
+    expect(useRollStore.getState().sessionFlags.firstDraw).toBe(false);
+  });
+});
+
 describe('useRollStore — reset', () => {
   it('reset() restores all defaults', async () => {
     const { useRollStore } = await freshStore();
