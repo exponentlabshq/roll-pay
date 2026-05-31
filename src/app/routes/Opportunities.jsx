@@ -85,7 +85,7 @@ export default function Opportunities() {
   };
 
   return (
-    <section class="px-6 pt-8">
+    <section class="px-6 pt-8 md:h-full md:flex md:flex-col">
       <p class="font-body uppercase tracking-wider text-text-muted text-xs">
         Earn
       </p>
@@ -93,7 +93,7 @@ export default function Opportunities() {
 
       <div
         data-testid="opportunities-list"
-        class="mt-6 overflow-y-auto h-[calc(100vh-200px)] flex flex-col gap-3 pr-1"
+        class="mt-6 overflow-y-auto h-[calc(100vh-200px)] md:h-auto md:flex-1 md:min-h-0 md:pb-24 flex flex-col gap-3 pr-1"
       >
         {mockOpportunities.map((opp) => (
           <OpportunityCard

@@ -89,7 +89,7 @@ export default function Onboarding() {
 
   return (
     <section
-      class="relative min-h-screen flex flex-col px-6 pt-6 pb-10"
+      class="relative min-h-screen md:min-h-full md:h-full flex flex-col px-6 pt-6 pb-10"
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}

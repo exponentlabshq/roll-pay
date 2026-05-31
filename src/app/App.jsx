@@ -36,7 +36,7 @@ export default function App() {
 
   return (
     <DeviceFrame>
-      <main class="min-h-screen bg-ink text-cream pb-24">
+      <main class="min-h-screen md:min-h-full md:h-full bg-ink text-cream pb-24">
         <Router history={hashHistory} onChange={onRouteChange}>
           <Home path="/" />
           <Home path="/home" />

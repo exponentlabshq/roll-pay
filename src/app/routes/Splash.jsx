@@ -17,7 +17,7 @@ import { route } from 'preact-router';
  */
 export default function Splash() {
   return (
-    <section class="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+    <section class="relative min-h-screen md:min-h-full md:h-full flex flex-col items-center justify-center px-6 overflow-hidden">
       {/* Soft lime radial-glow blob — "dark sections need texture". */}
       <div
         aria-hidden="true"

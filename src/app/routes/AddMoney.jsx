@@ -91,10 +91,12 @@ export default function AddMoney() {
   return (
     // min-h calc keeps the lime Add CTA sitting just above the 80px
     // (h-20) bottom-nav from App.jsx so it's tappable without overlap.
-    // 6rem = nav height (5rem) + a comfortable gap (1rem).
+    // 6rem = nav height (5rem) + a comfortable gap (1rem). On desktop
+    // (≥ md = 768px) the section is wrapped by <DeviceFrame> so we
+    // size to 100% of the frame's inner viewport instead of 100vh,
+    // otherwise the Add CTA gets pushed below the visible frame area.
     <section
-      class="relative flex flex-col px-6 pt-6 pb-4"
-      style={{ minHeight: 'calc(100vh - 6rem)' }}
+      class="relative flex flex-col px-6 pt-6 pb-4 min-h-[calc(100vh-6rem)] md:min-h-full md:h-full"
     >
       {/* Top bar — back to /home. */}
       <header class="flex items-center min-h-[44px]">
