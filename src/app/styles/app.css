@@ -1,0 +1,42 @@
+/* Roll PWA app stylesheet — imports the landing's brand tokens
+ * (single source of truth) and the Tailwind layers. This file is
+ * imported from src/app/main.jsx ONLY. It MUST NOT be imported from
+ * the landing entry (src/main.js) so Tailwind never leaks into /. */
+@import '../../styles/tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    background-color: var(--ink);
+    color: var(--cream);
+    font-family: var(--font-body);
+  }
+}
+
+/*
+ * holoShift — the continuous diagonal iridescence on HoloCard.
+ *
+ * Gated by `@media (prefers-reduced-motion: no-preference)` so users
+ * who've opted into reduced motion get a static painted card (the
+ * gradient still renders, just doesn't move). This satisfies brand
+ * rule §7 ("Reduced motion: honor prefers-reduced-motion") and
+ * validation assertion M2-A13.
+ */
+@keyframes holoShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .holo-card {
+    animation: holoShift 8s linear infinite;
+  }
+}
