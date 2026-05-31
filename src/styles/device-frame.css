@@ -1,0 +1,65 @@
+/* Device-frame mock (landing page, M5-F01).
+ *
+ * Wraps the live /app/ PWA in an iPhone 17 Pro Max-style frame inside
+ * the #play section on tablet + desktop viewports. Below 768px the
+ * frame is hidden entirely — the landing's existing mobile experience
+ * is left untouched.
+ *
+ * Dimensions:
+ *   - inner viewport: 440 × 956 (iPhone 17 Pro Max logical pixels)
+ *   - outer frame:    ~470 × 990 (≈ 15 px side bezel, ≈ 17 px top/bottom)
+ *
+ * Centered in the section via display:flex on the wrapper.
+ */
+
+.device-frame {
+  width: 470px;
+  height: 990px;
+  margin: 0 auto;
+  background: #1A1F1B;
+  border-radius: 60px;
+  padding: 17px 15px;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 60px rgba(200, 255, 61, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.device-frame__inner {
+  width: 440px;
+  height: 956px;
+  border-radius: 45px;
+  background: #0B0E0C;
+  position: relative;
+  overflow: hidden;
+}
+
+.device-frame__notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 35px;
+  border-radius: 999px;
+  background: #000;
+  z-index: 50;
+}
+
+.device-frame__iframe {
+  width: 440px;
+  height: 956px;
+  border: 0;
+  display: block;
+  background: #0B0E0C;
+}
+
+/* Mobile: hide the frame entirely; the landing's existing mobile
+ * experience for #play is unchanged. */
+@media (max-width: 767px) {
+  .device-frame {
+    display: none;
+  }
+}

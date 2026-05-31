@@ -2,6 +2,7 @@ import { useState, useCallback } from 'preact/hooks';
 import { Router } from 'preact-router';
 import { hashHistory, getHashPath } from './lib/hashHistory.js';
 import BottomNav from './components/BottomNav.jsx';
+import DeviceFrame from './components/DeviceFrame.jsx';
 import Home from './routes/Home.jsx';
 import Card from './routes/Card.jsx';
 import Draw from './routes/Draw.jsx';
@@ -34,18 +35,20 @@ export default function App() {
   const hideNav = path === '/splash' || path === '/onboarding';
 
   return (
-    <main class="min-h-screen bg-ink text-cream pb-24">
-      <Router history={hashHistory} onChange={onRouteChange}>
-        <Home path="/" />
-        <Home path="/home" />
-        <Opportunities path="/opportunities" />
-        <Draw path="/draw" />
-        <Card path="/card" />
-        <Splash path="/splash" />
-        <Onboarding path="/onboarding" />
-        <AddMoney path="/add" />
-      </Router>
-      {!hideNav && <BottomNav currentPath={path} />}
-    </main>
+    <DeviceFrame>
+      <main class="min-h-screen bg-ink text-cream pb-24">
+        <Router history={hashHistory} onChange={onRouteChange}>
+          <Home path="/" />
+          <Home path="/home" />
+          <Opportunities path="/opportunities" />
+          <Draw path="/draw" />
+          <Card path="/card" />
+          <Splash path="/splash" />
+          <Onboarding path="/onboarding" />
+          <AddMoney path="/add" />
+        </Router>
+        {!hideNav && <BottomNav currentPath={path} />}
+      </main>
+    </DeviceFrame>
   );
 }
