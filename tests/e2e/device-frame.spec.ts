@@ -72,7 +72,7 @@ test.describe('device frame — desktop overlay', () => {
     );
   });
 
-  test('PWA at /app/ is wrapped in a 470×990 frame with 440×956 inner viewport', async ({
+  test('PWA at /app/ is wrapped in a phone frame with the iPhone 17 Pro Max aspect ratio', async ({
     page,
   }) => {
     await page.goto(PWA_DEMO_URL);
@@ -83,16 +83,34 @@ test.describe('device frame — desktop overlay', () => {
     await expect(frame).toBeVisible();
     await expect(inner).toBeVisible();
 
+    const viewportSize = page.viewportSize();
     const frameBox = await frame.boundingBox();
     const innerBox = await inner.boundingBox();
     expect(frameBox).not.toBeNull();
     expect(innerBox).not.toBeNull();
-    // Outer frame is 470×990 (±10 px tolerance for sub-pixel layout).
-    expect(Math.abs((frameBox!.width ?? 0) - 470)).toBeLessThanOrEqual(10);
-    expect(Math.abs((frameBox!.height ?? 0) - 990)).toBeLessThanOrEqual(10);
-    // Inner viewport is the iPhone 17 Pro Max logical size, 440×956.
-    expect(Math.abs((innerBox!.width ?? 0) - 440)).toBeLessThanOrEqual(5);
-    expect(Math.abs((innerBox!.height ?? 0) - 956)).toBeLessThanOrEqual(5);
+
+    // The outer frame shrinks proportionally on short viewports
+    // (post-hotfix: `height: min(990px, calc(100dvh - 4rem))` +
+    // `aspect-ratio: 440 / 956`), so we assert the aspect ratio of
+    // the outer rather than absolute pixels.
+    const expectedRatio = 440 / 956;
+    const frameRatio = frameBox!.width / frameBox!.height;
+    expect(Math.abs(frameRatio - expectedRatio)).toBeLessThanOrEqual(0.01);
+
+    // The inner viewport sits inside the bezel: `padding: 17px 15px`
+    // on the frame, so the inner is exactly (frame.width − 30) ×
+    // (frame.height − 34). The inner's own ratio diverges from
+    // 440/956 as the frame shrinks (constant pixels of bezel become
+    // proportionally larger) — assert the geometric inset instead.
+    expect(Math.abs(innerBox!.width - (frameBox!.width - 30))).toBeLessThanOrEqual(2);
+    expect(Math.abs(innerBox!.height - (frameBox!.height - 34))).toBeLessThanOrEqual(2);
+
+    // The hotfix also caps the outer frame to `100dvh - 4rem` (2 rem
+    // breathing room top + bottom). It must not overflow the viewport.
+    expect(frameBox!.y).toBeGreaterThanOrEqual(0);
+    expect(frameBox!.y + frameBox!.height).toBeLessThanOrEqual(
+      (viewportSize?.height ?? 0) + 1
+    );
   });
 
   test('PWA bottom-nav pins to the bottom of the inner viewport, not the window', async ({
@@ -135,10 +153,15 @@ test.describe('device frame — desktop overlay', () => {
     const src = await iframe.getAttribute('src');
     expect(src).toMatch(/\/app\/\?demo=fresh$/);
 
-    // Same physical dimensions as Surface B's inner viewport.
+    // The iframe fills the inner viewport (post-hotfix: 100% × 100%),
+    // which is the outer frame minus the 15 px / 17 px bezel padding.
+    // Assert the geometric inset rather than absolute pixels so the
+    // check holds at any viewport that triggers a scaled-down frame.
     const iframeBox = await iframe.boundingBox();
+    const frameBox = await frame.boundingBox();
     expect(iframeBox).not.toBeNull();
-    expect(Math.abs((iframeBox!.width ?? 0) - 440)).toBeLessThanOrEqual(5);
-    expect(Math.abs((iframeBox!.height ?? 0) - 956)).toBeLessThanOrEqual(5);
+    expect(frameBox).not.toBeNull();
+    expect(Math.abs(iframeBox!.width - (frameBox!.width - 30))).toBeLessThanOrEqual(2);
+    expect(Math.abs(iframeBox!.height - (frameBox!.height - 34))).toBeLessThanOrEqual(2);
   });
 });

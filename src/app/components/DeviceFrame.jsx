@@ -49,14 +49,25 @@ export default function DeviceFrame({ children }) {
   return (
     <div
       data-testid="device-frame-stage"
-      class="min-h-screen w-full bg-ink-soft flex items-center justify-center py-8"
+      class="min-h-screen w-full bg-ink-soft flex items-center justify-center"
     >
       <div
         data-testid="device-frame"
         class="device-frame relative"
         style={{
-          width: '470px',
-          height: '990px',
+          // Height-first sizing so the frame shrinks proportionally
+          // on shorter desktop/tablet viewports. `height` caps at the
+          // natural 990 px or `100dvh - 4rem` (2 rem breathing room
+          // top + bottom), whichever is smaller; `aspect-ratio` then
+          // drives the width. 2 rem (32 px) margin on top + bottom
+          // keeps the frame from kissing the chrome.
+          height: 'min(990px, calc(100dvh - 4rem))',
+          width: 'auto',
+          maxWidth: '100%',
+          minWidth: 0,
+          minHeight: '540px',
+          aspectRatio: '440 / 956',
+          margin: '2rem auto',
           background: '#1A1F1B',
           borderRadius: '60px',
           padding: '17px 15px',
@@ -68,12 +79,17 @@ export default function DeviceFrame({ children }) {
           data-testid="device-frame-inner"
           class="device-frame__inner relative overflow-hidden bg-ink"
           style={{
-            width: '440px',
-            height: '956px',
+            // Fill the frame's content box. With Tailwind's
+            // border-box default the frame's `padding: 17px 15px` is
+            // already subtracted from its content area, so 100% lands
+            // at the intended inner viewport without re-subtracting
+            // the bezel.
+            width: '100%',
+            height: '100%',
             borderRadius: '45px',
             // Establishes a containing block for fixed-position
             // descendants (e.g. the BottomNav) so they pin to the
-            // frame's bottom, not the window's.
+            // frame's bottom, not the window's. LOAD-BEARING.
             transform: 'translateZ(0)',
           }}
         >
