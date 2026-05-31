@@ -30,6 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/src/styles/device-frame.css">
 </head>
 <body>
 
@@ -44,8 +45,8 @@
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-cta">
-      <a href="#" class="btn btn-ghost">Log in</a>
-      <a href="#get" class="btn btn-primary">Get the app</a>
+      <a href="/app/" class="btn btn-ghost">Log in</a>
+      <a href="/app/?demo=fresh" class="btn btn-primary">Get the app</a>
     </div>
   </div>
 </nav>
@@ -63,7 +64,7 @@
       </h1>
       <p class="hero-sub">The card where every tap is a chance to pay <b class="mono lime">$0.00</b>. Hold digital dollars, tap anywhere, and let the bill maybe vanish.</p>
       <div class="hero-cta">
-        <a href="#get" class="btn btn-primary">Get the app →</a>
+        <a href="/app/?demo=fresh" class="btn btn-primary">Get the app →</a>
         <a href="#play" class="btn btn-ghost">▶ See how it works</a>
       </div>
       <div class="hero-trust">
@@ -155,6 +156,14 @@
       <button class="btn btn-primary" id="tapBtn">🪙 Tap to pay</button>
       <p class="demo-note" id="demoNote">Press the button to simulate a tap-to-pay.</p>
       <canvas id="confetti"></canvas>
+    </div>
+
+    <!-- Live PWA, mocked inside a phone frame (tablet + desktop only) -->
+    <div class="device-frame" style="margin-top:64px">
+      <div class="device-frame__inner">
+        <div class="device-frame__notch"></div>
+        <iframe class="device-frame__iframe" src="/app/?demo=fresh" title="Roll app demo" loading="lazy"></iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -286,7 +295,7 @@
       <div class="blob b"></div>
       <h2>Tap. Maybe pay nothing.</h2>
       <p>Join the early access list and get your digital-dollar card. The next free coffee could be yours.</p>
-      <a href="#" class="btn btn-dark">Get the app →</a>
+      <a href="/app/?demo=fresh" class="btn btn-dark">Get the app →</a>
     </div>
   </div>
 </section>
